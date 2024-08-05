@@ -1,0 +1,44 @@
+
+query RunInput {
+  localization {
+    country {
+      isoCode 
+    }
+  }
+  shop {
+    metafield(
+      namespace: "currencyfluctuation",
+      key: "currencyfluctuation"
+    ) {
+      value
+    }
+    localTime {
+      date
+    }
+  }
+  cart {
+    cost {
+      totalAmount {
+        amount
+        currencyCode
+      }
+    }
+    lines {
+      id
+      quantity
+      merchandise {
+        ... on ProductVariant {
+          id
+          product {
+            id
+          }
+        }
+      }
+    }
+  }
+    discountNode {
+    metafield(namespace: "discount-percentage", key: "function-discount-percentage") {
+      value
+    }
+  }
+}
